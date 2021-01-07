@@ -1,0 +1,6 @@
+version: '2'
+services:
+    python38env:
+        build: .
+        volumes:
+            - .:/app

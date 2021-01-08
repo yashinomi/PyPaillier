@@ -4,7 +4,16 @@ from .utils import safe_random_below
 from .publickey import PublicKey
 from .privatekey import PrivateKey
 
+
 class KeyPair:
+    """
+    Provides an interface to manage a private key and its public key.
+
+    Parameters
+    ----------
+    public_key : PublicKey
+    private_key : PrivateKey
+    """
     def __init__(self, public_key: PublicKey, private_key: PrivateKey):
         if not isinstance(public_key, PublicKey) or not isinstance(private_key, PrivateKey):
             raise TypeError("public_key must be an instance of PublicKey and "
@@ -23,6 +32,20 @@ class KeyPair:
 
     @staticmethod
     def generate_key_pair(key_length: int) -> "KeyPair":
+        """
+        Generates a pair of private key and its public key.
+
+        Parameters
+        ----------
+        key_length : int
+            The bit length of the key that is going to be generated.
+
+        Returns
+        -------
+        KeyPair
+            An instance of KeyPair including a private key and its public key.
+        """
+        # generate prime numbers by using the crypto module.
         rsa: Crypto.PublicKey.RSA.RsaKey = Crypto.PublicKey.RSA.generate(key_length)
 
         n: int = rsa.n

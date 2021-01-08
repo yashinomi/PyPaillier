@@ -16,16 +16,16 @@ class KeyPair:
     """
     def __init__(self, public_key: PublicKey, private_key: PrivateKey):
         if not isinstance(public_key, PublicKey) or not isinstance(private_key, PrivateKey):
-            raise TypeError("public_key must be an instance of PublicKey and "
-                            "private_key must be an instance of PrivateKey")
+            raise TypeError("pk must be an instance of PublicKey and "
+                            "sk must be an instance of PrivateKey")
 
-        self.public_key: PublicKey = public_key
-        self.private_key: PrivateKey = private_key
+        self.pk: PublicKey = public_key
+        self.sk: PrivateKey = private_key
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, KeyPair):
             return False
-        elif self.public_key == other.public_key and self.private_key == other.private_key:
+        elif self.pk == other.pk and self.sk == other.sk:
             return True
         else:
             return False
@@ -58,8 +58,8 @@ class KeyPair:
         return KeyPair(PublicKey(n, g), PrivateKey(p, q, g))
 
     def export_keys(self, pub_path: str, private_path: str):
-        self.public_key.export_key(pub_path)
-        self.private_key.export_key(private_path)
+        self.pk.export_key(pub_path)
+        self.sk.export_key(private_path)
 
     @staticmethod
     def import_keys(pub_path, private_path) -> "KeyPair":

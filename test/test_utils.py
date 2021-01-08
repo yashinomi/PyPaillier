@@ -11,6 +11,5 @@ class TestUtils(unittest.TestCase):
         self.assertEqual(6, utils.lcm(3, 6))
         self.assertEqual(84, utils.lcm(28, 12))
 
-
 if __name__ == '__main__':
     unittest.main()

@@ -1,4 +1,15 @@
 class EncodedMessage:
+    """
+    Represents a encrypted number/message.
+    It provides an easy and natural way to use the homomorphic properties of Paillier crypto system.
+
+    Parameters
+    ----------
+    message : int
+        An encrypted message
+    public_key
+        The public key is necessary too use the homomorphic properties.
+    """
     def __init__(self, message, public_key):
         self.m = message
         self.pk = public_key

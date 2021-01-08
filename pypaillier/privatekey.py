@@ -1,7 +1,9 @@
 import pathlib
+from typing import Union
 
 from .encoded_message import EncodedMessage
 from .utils import lcm, mod_inv
+
 
 class PrivateKey:
     def __init__(self, p: int, q: int, g: int):
@@ -25,7 +27,7 @@ class PrivateKey:
     def _L(self, x) -> int:
         return (x - 1) // self.n % self.n
 
-    def decrypt(self, encrypted_message: EncodedMessage) -> int:
+    def decrypt(self, encrypted_message: Union[EncodedMessage, int]) -> int:
         plain_m: int = int(encrypted_message)
         return self._L(pow(plain_m, self.l, self.n2)) * self.L_div % self.n
 

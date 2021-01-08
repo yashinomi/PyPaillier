@@ -13,6 +13,14 @@ class KeyPair:
         self.public_key: PublicKey = public_key
         self.private_key: PrivateKey = private_key
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, KeyPair):
+            return False
+        elif self.public_key == other.public_key and self.private_key == other.private_key:
+            return True
+        else:
+            return False
+
     @staticmethod
     def generate_key_pair(key_length: int) -> "KeyPair":
         rsa: Crypto.PublicKey.RSA.RsaKey = Crypto.PublicKey.RSA.generate(key_length)

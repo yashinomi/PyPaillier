@@ -33,3 +33,14 @@ class KeyPair:
         g: int = (1 + k * n) % (n ** 2)
 
         return KeyPair(PublicKey(n, g), PrivateKey(p, q, g))
+
+    def export_keys(self, pub_path: str, private_path: str):
+        self.public_key.export_key(pub_path)
+        self.private_key.export_key(private_path)
+
+    @staticmethod
+    def import_keys(pub_path, private_path) -> "KeyPair":
+        pub_key: PublicKey = PublicKey.import_key(pub_path)
+        private_key: PrivateKey = PrivateKey.import_key(private_path)
+
+        return KeyPair(pub_key, private_key)

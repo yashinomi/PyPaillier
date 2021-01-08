@@ -1,3 +1,5 @@
+import pathlib
+
 from .encoded_message import EncodedMessage
 from .utils import safe_random_below
 
@@ -14,3 +16,16 @@ class PublicKey:
         c *= pow(r, self.n, self.n2)
         c %= self.n2
         return EncodedMessage(c, self)
+
+    def export_key(self, path):
+        p = pathlib.Path(path)
+        with open(p.resolve(), "w") as file:
+            file.writelines(str(line) + "\n" for line in [self.n, self.g])
+
+    @staticmethod
+    def import_key(path):
+        p = pathlib.Path(path)
+        with open(p.resolve(), "r") as file:
+            n, g = map(int, file.readlines())
+
+        return PublicKey(n, g)

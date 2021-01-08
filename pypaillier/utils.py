@@ -1,7 +1,7 @@
 import math
 import sys
 import secrets
-from typing import Callable, Tuple
+from typing import Callable, Dict, Tuple
 
 
 def lcm(x: int, y: int) -> int:

@@ -10,6 +10,14 @@ class PublicKey:
         self.n2 = n ** 2
         self.g = g
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, PublicKey):
+            return False
+        elif self.n != other.n or self.g != other.g:
+            return False
+        else:
+            return True
+
     def encrypt(self, message: int) -> EncodedMessage:
         r = safe_random_below(self.n2, self.n)
         c = pow(self.g, message, self.n2)
